@@ -1,0 +1,45 @@
+﻿@page
+@{
+    ViewData["Title"] = "Page1";
+}
+
+<h2>Page1</h2>
+
+@(Html.DevExtreme().DataGrid<RazorPages.Models.User>()
+    .DataSource(ds => ds.Mvc()
+        .Controller("User")
+        .LoadAction("Get")
+        .InsertAction("Post")
+        .UpdateAction("Put")
+        .DeleteAction("Delete")
+        .Key("id")
+    )
+    .RemoteOperations(true)
+    .Columns(columns => {
+
+        columns.AddFor(m => m.id);
+
+        columns.AddFor(m => m.name);
+
+        columns.AddFor(m => m.phone);
+
+        columns.AddFor(m => m.email);
+
+        columns.AddFor(m => m.gender);
+
+        columns.AddFor(m => m.dob);
+
+        columns.AddFor(m => m.password);
+
+        columns.AddFor(m => m.fcmToken);
+
+        columns.AddFor(m => m.tokenExpiryDate);
+
+        columns.AddFor(m => m.tokenCreationOn);
+    })
+    .Editing(e => e
+        .AllowAdding(true)
+        .AllowUpdating(true)
+        .AllowDeleting(true)
+    )
+)
